@@ -97,68 +97,69 @@ class R12DInstruction(CFInstruction):
 
     def gen_bytecode_int(self, is_spike_resolution: bool):
         # rv32i
-        if self.instr_str == "add":
-            return rv32i_add(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "sub":
-            return rv32i_sub(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "sll":
-            return rv32i_sll(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "slt":
-            return rv32i_slt(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "sltu":
-            return rv32i_sltu(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "xor":
-            return rv32i_xor(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "srl":
-            return rv32i_srl(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "sra":
-            return rv32i_sra(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "or":
-            return rv32i_or(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "and":
-            return rv32i_and(self.rd, self.rs1, self.rs2)
-        # rv64i
-        elif self.instr_str == "addw":
-            return rv64i_addw(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "subw":
-            return rv64i_subw(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "sllw":
-            return rv64i_sllw(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "srlw":
-            return rv64i_srlw(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "sraw":
-            return rv64i_sraw(self.rd, self.rs1, self.rs2)
-        # rv32m
-        elif self.instr_str == "mul":
-            return rv32m_mul(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "mulh":
-            return rv32m_mulh(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "mulhsu":
-            return rv32m_mulhsu(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "mulhu":
-            return rv32m_mulhu(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "div":
-            return rv32m_div(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "divu":
-            return rv32m_divu(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "rem":
-            return rv32m_rem(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "remu":
-            return rv32m_remu(self.rd, self.rs1, self.rs2)
-        # rv64m
-        elif self.instr_str == "mulw":
-            return rv64m_mulw(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "divw":
-            return rv64m_divw(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "divuw":
-            return rv64m_divuw(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "remw":
-            return rv64m_remw(self.rd, self.rs1, self.rs2)
-        elif self.instr_str == "remuw":
-            return rv64m_remuw(self.rd, self.rs1, self.rs2)
-        # Default case
-        else:
-            raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
+        match self.instr_str:
+            case "add":
+                return rv32i_add(self.rd, self.rs1, self.rs2)
+            case "sub":
+                return rv32i_sub(self.rd, self.rs1, self.rs2)
+            case "sll":
+                return rv32i_sll(self.rd, self.rs1, self.rs2)
+            case "slt":
+                return rv32i_slt(self.rd, self.rs1, self.rs2)
+            case "sltu":
+                return rv32i_sltu(self.rd, self.rs1, self.rs2)
+            case "xor":
+                return rv32i_xor(self.rd, self.rs1, self.rs2)
+            case "srl":
+                return rv32i_srl(self.rd, self.rs1, self.rs2)
+            case "sra":
+                return rv32i_sra(self.rd, self.rs1, self.rs2)
+            case "or":
+                return rv32i_or(self.rd, self.rs1, self.rs2)
+            case "and":
+                return rv32i_and(self.rd, self.rs1, self.rs2)
+            # rv64i
+            case "addw":
+                return rv64i_addw(self.rd, self.rs1, self.rs2)
+            case "subw":
+                return rv64i_subw(self.rd, self.rs1, self.rs2)
+            case "sllw":
+                return rv64i_sllw(self.rd, self.rs1, self.rs2)
+            case "srlw":
+                return rv64i_srlw(self.rd, self.rs1, self.rs2)
+            case "sraw":
+                return rv64i_sraw(self.rd, self.rs1, self.rs2)
+            # rv32m
+            case "mul":
+                return rv32m_mul(self.rd, self.rs1, self.rs2)
+            case "mulh":
+                return rv32m_mulh(self.rd, self.rs1, self.rs2)
+            case "mulhsu":
+                return rv32m_mulhsu(self.rd, self.rs1, self.rs2)
+            case "mulhu":
+                return rv32m_mulhu(self.rd, self.rs1, self.rs2)
+            case "div":
+                return rv32m_div(self.rd, self.rs1, self.rs2)
+            case "divu":
+                return rv32m_divu(self.rd, self.rs1, self.rs2)
+            case "rem":
+                return rv32m_rem(self.rd, self.rs1, self.rs2)
+            case "remu":
+                return rv32m_remu(self.rd, self.rs1, self.rs2)
+            # rv64m
+            case "mulw":
+                return rv64m_mulw(self.rd, self.rs1, self.rs2)
+            case "divw":
+                return rv64m_divw(self.rd, self.rs1, self.rs2)
+            case "divuw":
+                return rv64m_divuw(self.rd, self.rs1, self.rs2)
+            case "remw":
+                return rv64m_remw(self.rd, self.rs1, self.rs2)
+            case "remuw":
+                return rv64m_remuw(self.rd, self.rs1, self.rs2)
+            # Default case
+            case _:
+                raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
 
 # Instructions with imm and rd
 ImmRdInstructions = ("lui", "auipc")
@@ -175,13 +176,14 @@ class ImmRdInstruction(ImmInstruction):
 
     def gen_bytecode_int(self, is_spike_resolution: bool):
         # rv32i
-        if self.instr_str == "lui":
-            return rv32i_lui(self.rd, self.imm)
-        elif self.instr_str == "auipc":
-            return rv32i_auipc(self.rd, self.imm)
-        # Default case
-        else:
-            raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
+        match self.instr_str:
+            case "lui":
+                return rv32i_lui(self.rd, self.imm)
+            case "auipc":
+                return rv32i_auipc(self.rd, self.imm)
+            # Default case
+            case _:
+                raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
 
 
 # Instructions with rs1, imm and rd
@@ -203,36 +205,37 @@ class RegImmInstruction(ImmInstruction):
 
     def gen_bytecode_int(self, is_spike_resolution: bool):
         # rv32i
-        if self.instr_str == "addi":
-            return rv32i_addi(self.rd, self.rs1, self.imm)
-        elif self.instr_str == "slti":
-            return rv32i_slti(self.rd, self.rs1, self.imm)
-        elif self.instr_str == "sltiu":
-            return rv32i_sltiu(self.rd, self.rs1, self.imm)
-        elif self.instr_str == "xori":
-            return rv32i_xori(self.rd, self.rs1, self.imm)
-        elif self.instr_str == "ori":
-            return rv32i_ori(self.rd, self.rs1, self.imm)
-        elif self.instr_str == "andi":
-            return rv32i_andi(self.rd, self.rs1, self.imm)
-        elif self.instr_str == "slli":
-            return rv32i_slli(self.rd, self.rs1, self.imm)
-        elif self.instr_str == "srli":
-            return rv32i_srli(self.rd, self.rs1, self.imm)
-        elif self.instr_str == "srai":
-            return rv32i_srai(self.rd, self.rs1, self.imm)
-        # rv64i
-        elif self.instr_str == "addiw":
-            return rv64i_addiw(self.rd, self.rs1, self.imm)
-        elif self.instr_str == "slliw":
-            return rv64i_slliw(self.rd, self.rs1, self.imm)
-        elif self.instr_str == "srliw":
-            return rv64i_srliw(self.rd, self.rs1, self.imm)
-        elif self.instr_str == "sraiw":
-            return rv64i_sraiw(self.rd, self.rs1, self.imm)
-        # Default case
-        else:
-            raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
+        match self.instr_str:
+            case "addi":
+                return rv32i_addi(self.rd, self.rs1, self.imm)
+            case "slti":
+                return rv32i_slti(self.rd, self.rs1, self.imm)
+            case "sltiu":
+                return rv32i_sltiu(self.rd, self.rs1, self.imm)
+            case "xori":
+                return rv32i_xori(self.rd, self.rs1, self.imm)
+            case "ori":
+                return rv32i_ori(self.rd, self.rs1, self.imm)
+            case "andi":
+                return rv32i_andi(self.rd, self.rs1, self.imm)
+            case "slli":
+                return rv32i_slli(self.rd, self.rs1, self.imm)
+            case "srli":
+                return rv32i_srli(self.rd, self.rs1, self.imm)
+            case "srai":
+                return rv32i_srai(self.rd, self.rs1, self.imm)
+            # rv64i
+            case "addiw":
+                return rv64i_addiw(self.rd, self.rs1, self.imm)
+            case "slliw":
+                return rv64i_slliw(self.rd, self.rs1, self.imm)
+            case "srliw":
+                return rv64i_srliw(self.rd, self.rs1, self.imm)
+            case "sraiw":
+                return rv64i_sraiw(self.rd, self.rs1, self.imm)
+            # Default case
+            case _:
+                raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
 
 # Branch instructions: with rs1, rs2 and an immediate
 BranchInstructions = ("beq", "bne", "blt", "bge", "bltu", "bgeu")
@@ -280,21 +283,22 @@ class BranchInstruction(ImmInstruction):
                 return rv32i_addi(0, 0, 0) # Nop
         else:
             # rv32i
-            if self.instr_str == "beq":
-                return rv32i_beq(self.rs1, self.rs2, self.imm)
-            elif self.instr_str == "bne":
-                return rv32i_bne(self.rs1, self.rs2, self.imm)
-            elif self.instr_str == "blt":
-                return rv32i_blt(self.rs1, self.rs2, self.imm)
-            elif self.instr_str == "bge":
-                return rv32i_bge(self.rs1, self.rs2, self.imm)
-            elif self.instr_str == "bltu":
-                return rv32i_bltu(self.rs1, self.rs2, self.imm)
-            elif self.instr_str == "bgeu":
-                return rv32i_bgeu(self.rs1, self.rs2, self.imm)
-            # Default case
-            else:
-                raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
+            match self.instr_str:
+                case "beq":
+                    return rv32i_beq(self.rs1, self.rs2, self.imm)
+                case "bne":
+                    return rv32i_bne(self.rs1, self.rs2, self.imm)
+                case "blt":
+                    return rv32i_blt(self.rs1, self.rs2, self.imm)
+                case "bge":
+                    return rv32i_bge(self.rs1, self.rs2, self.imm)
+                case "bltu":
+                    return rv32i_bltu(self.rs1, self.rs2, self.imm)
+                case "bgeu":
+                    return rv32i_bgeu(self.rs1, self.rs2, self.imm)
+                # Default case
+                case _:
+                    raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
 
 # The jal instruction
 JALInstructions = ("jal",)
@@ -345,14 +349,15 @@ class SpecialInstruction(CFInstruction):
 
     def gen_bytecode_int(self, is_spike_resolution: bool):
         # rv32i
-        if self.instr_str == "fence":
-            return rv32i_fence(self.rd, self.rs1)
-        # zifencei
-        elif self.instr_str == "fence.i":
-            return zifencei_fencei(self.rd, self.rs1)
-        # Default case
-        else:
-            raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
+        match self.instr_str:
+            case "fence":
+                return rv32i_fence(self.rd, self.rs1)
+            # zifencei
+            case "fence.i":
+                return zifencei_fencei(self.rd, self.rs1)
+            # Default case
+            case _:
+                raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
 
 EcallEbreakInstructions = ("ecall", "ebreak")
 class EcallEbreakInstruction(CFInstruction):
@@ -363,13 +368,14 @@ class EcallEbreakInstruction(CFInstruction):
 
     def gen_bytecode_int(self, is_spike_resolution: bool):
         # rv32i
-        if self.instr_str == "ecall":
-            return rv32i_ecall()
-        elif self.instr_str == "ebreak":
-            return rv32i_ebreak()
-        # Default case
-        else:
-            raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
+        match self.instr_str:
+            case "ecall":
+                return rv32i_ecall()
+            case "ebreak":
+                return rv32i_ebreak()
+            # Default case
+            case _:
+                raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
 
 # Integer load instructions
 IntLoadInstructions = ("lb", "lh", "lw", "lbu", "lhu", "lwu", "ld")
@@ -389,24 +395,25 @@ class IntLoadInstruction(ImmInstruction):
 
     def gen_bytecode_int(self, is_spike_resolution: bool):
         # rv32i
-        if self.instr_str == "lb":
-            return rv32i_lb(self.rd, self.rs1, self.imm)
-        elif self.instr_str == "lh":
-            return rv32i_lh(self.rd, self.rs1, self.imm)
-        elif self.instr_str == "lw":
-            return rv32i_lw(self.rd, self.rs1, self.imm)
-        elif self.instr_str == "lbu":
-            return rv32i_lbu(self.rd, self.rs1, self.imm)
-        elif self.instr_str == "lhu":
-            return rv32i_lhu(self.rd, self.rs1, self.imm)
-        # rv64i
-        elif self.instr_str == "lwu":
-            return rv64i_lwu(self.rd, self.rs1, self.imm)
-        elif self.instr_str == "ld":
-            return rv64i_ld(self.rd, self.rs1, self.imm)
-        # Default case
-        else:
-            raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
+        match self.instr_str:
+            case "lb":
+                return rv32i_lb(self.rd, self.rs1, self.imm)
+            case "lh":
+                return rv32i_lh(self.rd, self.rs1, self.imm)
+            case "lw":
+                return rv32i_lw(self.rd, self.rs1, self.imm)
+            case "lbu":
+                return rv32i_lbu(self.rd, self.rs1, self.imm)
+            case "lhu":
+                return rv32i_lhu(self.rd, self.rs1, self.imm)
+            # rv64i
+            case "lwu":
+                return rv64i_lwu(self.rd, self.rs1, self.imm)
+            case "ld":
+                return rv64i_ld(self.rd, self.rs1, self.imm)
+            # Default case
+            case _:
+                raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
 
 # Integer store instructions
 IntStoreInstructions = ("sb", "sh", "sw", "sd")
@@ -426,18 +433,19 @@ class IntStoreInstruction(ImmInstruction):
 
     def gen_bytecode_int(self, is_spike_resolution: bool):
         # rv32i
-        if self.instr_str == "sb":
-            return rv32i_sb(self.rs1, self.rs2, self.imm)
-        elif self.instr_str == "sh":
-            return rv32i_sh(self.rs1, self.rs2, self.imm)
-        elif self.instr_str == "sw":
-            return rv32i_sw(self.rs1, self.rs2, self.imm)
-        # rv64i
-        elif self.instr_str == "sd":
-            return rv64i_sd(self.rs1, self.rs2, self.imm)
-        # Default case
-        else:
-            raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
+        match self.instr_str:
+            case "sb":
+                return rv32i_sb(self.rs1, self.rs2, self.imm)
+            case "sh":
+                return rv32i_sh(self.rs1, self.rs2, self.imm)
+            case "sw":
+                return rv32i_sw(self.rs1, self.rs2, self.imm)
+            # rv64i
+            case "sd":
+                return rv64i_sd(self.rs1, self.rs2, self.imm)
+            # Default case
+            case _:
+                raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
 
 ###
 # Floating-point
@@ -461,14 +469,15 @@ class FloatLoadInstruction(ImmInstruction):
 
     def gen_bytecode_int(self, is_spike_resolution: bool):
         # rv32f
-        if self.instr_str == "flw":
-            return rv32f_flw(self.frd, self.rs1, self.imm)
-        # rv32d
-        elif self.instr_str == "fld":
-            return rv32d_fld(self.frd, self.rs1, self.imm)
-        # Default case
-        else:
-            raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
+        match self.instr_str:
+            case "flw":
+                return rv32f_flw(self.frd, self.rs1, self.imm)
+            # rv32d
+            case "fld":
+                return rv32d_fld(self.frd, self.rs1, self.imm)
+            # Default case
+            case _:
+                raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
 
 # Float store instructions
 FloatStoreInstructions = ("fsw", "fsd")
@@ -488,14 +497,15 @@ class FloatStoreInstruction(ImmInstruction):
 
     def gen_bytecode_int(self, is_spike_resolution: bool):
         # rv32f
-        if self.instr_str == "fsw":
-            return rv32f_fsw(self.rs1, self.frs2, self.imm)
-        # rv32d
-        elif self.instr_str == "fsd":
-            return rv32d_fsd(self.rs1, self.frs2, self.imm)
-        # Default case
-        else:
-            raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
+        match self.instr_str:
+            case "fsw":
+                return rv32f_fsw(self.rs1, self.frs2, self.imm)
+            # rv32d
+            case "fsd":
+                return rv32d_fsd(self.rs1, self.frs2, self.imm)
+            # Default case
+            case _:
+                raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
 
 # Float to int instructions
 FloatToIntInstructions = ("fcvt.w.s", "fcvt.wu.s", "fcvt.l.s", "fcvt.lu.s", "fcvt.w.d", "fcvt.wu.d", "fcvt.l.d", "fcvt.lu.d")
@@ -517,29 +527,30 @@ class FloatToIntInstruction(CFInstruction):
 
     def gen_bytecode_int(self, is_spike_resolution: bool):
         # rv32f
-        if self.instr_str == "fcvt.w.s":
-            return rv32f_fcvtws(self.rd, self.frs1, self.rm)
-        elif self.instr_str == "fcvt.wu.s":
-            return rv32f_fcvtwus(self.rd, self.frs1, self.rm)
-        # rv64f
-        elif self.instr_str == "fcvt.l.s":
-            return rv64f_fcvtls(self.rd, self.frs1, self.rm)
-        elif self.instr_str == "fcvt.lu.s":
-            return rv64f_fcvtlus(self.rd, self.frs1, self.rm)
-        # rv32d
-        elif self.instr_str == "fcvt.w.d":
-            return rv32d_fcvtwd(self.rd, self.frs1, self.rm)
-        # rv32d
-        elif self.instr_str == "fcvt.wu.d":
-            return rv32d_fcvtwud(self.rd, self.frs1, self.rm)
-        # rv64d
-        elif self.instr_str == "fcvt.l.d":
-            return rv64d_fcvtld(self.rd, self.frs1, self.rm)
-        elif self.instr_str == "fcvt.lu.d":
-            return rv64d_fcvtlud(self.rd, self.frs1, self.rm)
-        # Default case
-        else:
-            raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
+        match self.instr_str:
+            case "fcvt.w.s":
+                return rv32f_fcvtws(self.rd, self.frs1, self.rm)
+            case "fcvt.wu.s":
+                return rv32f_fcvtwus(self.rd, self.frs1, self.rm)
+            # rv64f
+            case "fcvt.l.s":
+                return rv64f_fcvtls(self.rd, self.frs1, self.rm)
+            case "fcvt.lu.s":
+                return rv64f_fcvtlus(self.rd, self.frs1, self.rm)
+            # rv32d
+            case "fcvt.w.d":
+                return rv32d_fcvtwd(self.rd, self.frs1, self.rm)
+            # rv32d
+            case "fcvt.wu.d":
+                return rv32d_fcvtwud(self.rd, self.frs1, self.rm)
+            # rv64d
+            case "fcvt.l.d":
+                return rv64d_fcvtld(self.rd, self.frs1, self.rm)
+            case "fcvt.lu.d":
+                return rv64d_fcvtlud(self.rd, self.frs1, self.rm)
+            # Default case
+            case _:
+                raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
 
 
 # Int to float instructions
@@ -562,28 +573,29 @@ class IntToFloatInstruction(CFInstruction):
 
     def gen_bytecode_int(self, is_spike_resolution: bool):
         # rv32f
-        if self.instr_str == "fcvt.s.w":
-            return rv32f_fcvtsw(self.frd, self.rs1, self.rm)
-        elif self.instr_str == "fcvt.s.wu":
-            return rv32f_fcvtswu(self.frd, self.rs1, self.rm)
-        # rv64f
-        elif self.instr_str == "fcvt.s.l":
-            return rv64f_fcvtsl(self.frd, self.rs1, self.rm)
-        elif self.instr_str == "fcvt.s.lu":
-            return rv64f_fcvtslu(self.frd, self.rs1, self.rm)
-        # rv32d
-        elif self.instr_str == "fcvt.d.w":
-            return rv32d_fcvtdw(self.frd, self.rs1, self.rm)
-        elif self.instr_str == "fcvt.d.wu":
-            return rv32d_fcvtdwu(self.frd, self.rs1, self.rm)
-        # rv64d
-        elif self.instr_str == "fcvt.d.l":
-            return rv64d_fcvtdl(self.frd, self.rs1, self.rm)
-        elif self.instr_str == "fcvt.d.lu":
-            return rv64d_fcvtdlu(self.frd, self.rs1, self.rm)
-        # Default case
-        else:
-            raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
+        match self.instr_str:
+            case "fcvt.s.w":
+                return rv32f_fcvtsw(self.frd, self.rs1, self.rm)
+            case "fcvt.s.wu":
+                return rv32f_fcvtswu(self.frd, self.rs1, self.rm)
+            # rv64f
+            case "fcvt.s.l":
+                return rv64f_fcvtsl(self.frd, self.rs1, self.rm)
+            case "fcvt.s.lu":
+                return rv64f_fcvtslu(self.frd, self.rs1, self.rm)
+            # rv32d
+            case "fcvt.d.w":
+                return rv32d_fcvtdw(self.frd, self.rs1, self.rm)
+            case "fcvt.d.wu":
+                return rv32d_fcvtdwu(self.frd, self.rs1, self.rm)
+            # rv64d
+            case "fcvt.d.l":
+                return rv64d_fcvtdl(self.frd, self.rs1, self.rm)
+            case "fcvt.d.lu":
+                return rv64d_fcvtdlu(self.frd, self.rs1, self.rm)
+            # Default case
+            case _:
+                raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
 
 # Pure float instructions with frs1, frs2, frs3 and frd
 Float4Instructions = ("fmadd.s", "fmsub.s", "fnmsub.s", "fnmadd.s", "fmadd.d", "fmsub.d", "fnmsub.d", "fnmadd.d")
@@ -611,26 +623,27 @@ class Float4Instruction(CFInstruction):
 
     def gen_bytecode_int(self, is_spike_resolution: bool):
         # rv32f
-        if self.instr_str == "fmadd.s":
-            return rv32f_fmadds(self.frd, self.frs1, self.frs2, self.frs3, self.rm)
-        elif self.instr_str == "fmsub.s":
-            return rv32f_fmsubs(self.frd, self.frs1, self.frs2, self.frs3, self.rm)
-        elif self.instr_str == "fnmsub.s":
-            return rv32f_fnmsubs(self.frd, self.frs1, self.frs2, self.frs3, self.rm)
-        elif self.instr_str == "fnmadd.s":
-            return rv32f_fnmadds(self.frd, self.frs1, self.frs2, self.frs3, self.rm)
-        # rv32d
-        elif self.instr_str == "fmadd.d":
-            return rv32d_fmaddd(self.frd, self.frs1, self.frs2, self.frs3, self.rm)
-        elif self.instr_str == "fmsub.d":
-            return rv32d_fmsubd(self.frd, self.frs1, self.frs2, self.frs3, self.rm)
-        elif self.instr_str == "fnmsub.d":
-            return rv32d_fnmsubd(self.frd, self.frs1, self.frs2, self.frs3, self.rm)
-        elif self.instr_str == "fnmadd.d":
-            return rv32d_fnmaddd(self.frd, self.frs1, self.frs2, self.frs3, self.rm)
-        # Default case
-        else:
-            raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
+        match self.instr_str:
+            case "fmadd.s":
+                return rv32f_fmadds(self.frd, self.frs1, self.frs2, self.frs3, self.rm)
+            case "fmsub.s":
+                return rv32f_fmsubs(self.frd, self.frs1, self.frs2, self.frs3, self.rm)
+            case "fnmsub.s":
+                return rv32f_fnmsubs(self.frd, self.frs1, self.frs2, self.frs3, self.rm)
+            case "fnmadd.s":
+                return rv32f_fnmadds(self.frd, self.frs1, self.frs2, self.frs3, self.rm)
+            # rv32d
+            case "fmadd.d":
+                return rv32d_fmaddd(self.frd, self.frs1, self.frs2, self.frs3, self.rm)
+            case "fmsub.d":
+                return rv32d_fmsubd(self.frd, self.frs1, self.frs2, self.frs3, self.rm)
+            case "fnmsub.d":
+                return rv32d_fnmsubd(self.frd, self.frs1, self.frs2, self.frs3, self.rm)
+            case "fnmadd.d":
+                return rv32d_fnmaddd(self.frd, self.frs1, self.frs2, self.frs3, self.rm)
+            # Default case
+            case _:
+                raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
 
 # Pure float instructions with frs1, frs2 and frd
 Float3Instructions = ("fadd.s", "fsub.s", "fmul.s", "fdiv.s", "fadd.d", "fsub.d", "fmul.d", "fdiv.d")
@@ -655,26 +668,27 @@ class Float3Instruction(CFInstruction):
 
     def gen_bytecode_int(self, is_spike_resolution: bool):
         # rv32f
-        if self.instr_str == "fadd.s":
-            return rv32f_fadds(self.frd, self.frs1, self.frs2, self.rm)
-        elif self.instr_str == "fsub.s":
-            return rv32f_fsubs(self.frd, self.frs1, self.frs2, self.rm)
-        elif self.instr_str == "fmul.s":
-            return rv32f_fmuls(self.frd, self.frs1, self.frs2, self.rm)
-        elif self.instr_str == "fdiv.s":
-            return rv32f_fdivs(self.frd, self.frs1, self.frs2, self.rm)
-        # rv32d
-        elif self.instr_str == "fadd.d":
-            return rv32d_faddd(self.frd, self.frs1, self.frs2, self.rm)
-        elif self.instr_str == "fsub.d":
-            return rv32d_fsubd(self.frd, self.frs1, self.frs2, self.rm)
-        elif self.instr_str == "fmul.d":
-            return rv32d_fmuld(self.frd, self.frs1, self.frs2, self.rm)
-        elif self.instr_str == "fdiv.d":
-            return rv32d_fdivd(self.frd, self.frs1, self.frs2, self.rm)
-        # Default case
-        else:
-            raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
+        match self.instr_str:
+            case "fadd.s":
+                return rv32f_fadds(self.frd, self.frs1, self.frs2, self.rm)
+            case "fsub.s":
+                return rv32f_fsubs(self.frd, self.frs1, self.frs2, self.rm)
+            case "fmul.s":
+                return rv32f_fmuls(self.frd, self.frs1, self.frs2, self.rm)
+            case "fdiv.s":
+                return rv32f_fdivs(self.frd, self.frs1, self.frs2, self.rm)
+            # rv32d
+            case "fadd.d":
+                return rv32d_faddd(self.frd, self.frs1, self.frs2, self.rm)
+            case "fsub.d":
+                return rv32d_fsubd(self.frd, self.frs1, self.frs2, self.rm)
+            case "fmul.d":
+                return rv32d_fmuld(self.frd, self.frs1, self.frs2, self.rm)
+            case "fdiv.d":
+                return rv32d_fdivd(self.frd, self.frs1, self.frs2, self.rm)
+            # Default case
+            case _:
+                raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
 
 # Pure float instructions with frs1, frs2 and frd
 Float3NoRmInstructions = ("fsgnj.s", "fsgnjn.s", "fsgnjx.s", "fmin.s", "fmax.s", "fsgnj.d", "fsgnjn.d", "fsgnjx.d", "fmin.d", "fmax.d")
@@ -696,30 +710,31 @@ class Float3NoRmInstruction(CFInstruction):
 
     def gen_bytecode_int(self, is_spike_resolution: bool):
         # rv32f
-        if  self.instr_str == "fsgnj.s":
-            return rv32f_fsgnjs(self.frd, self.frs1, self.frs2)
-        elif self.instr_str == "fsgnjn.s":
-            return rv32f_fsgnjns(self.frd, self.frs1, self.frs2)
-        elif self.instr_str == "fsgnjx.s":
-            return rv32f_fsgnjxs(self.frd, self.frs1, self.frs2)
-        elif self.instr_str == "fmin.s":
-            return rv32f_fmins(self.frd, self.frs1, self.frs2)
-        elif self.instr_str == "fmax.s":
-            return rv32f_fmaxs(self.frd, self.frs1, self.frs2)
-        # rv32d
-        if  self.instr_str == "fsgnj.d":
-            return rv32d_fsgnjd(self.frd, self.frs1, self.frs2)
-        elif self.instr_str == "fsgnjn.d":
-            return rv32d_fsgnjnd(self.frd, self.frs1, self.frs2)
-        elif self.instr_str == "fsgnjx.d":
-            return rv32d_fsgnjxd(self.frd, self.frs1, self.frs2)
-        elif self.instr_str == "fmin.d":
-            return rv32d_fmind(self.frd, self.frs1, self.frs2)
-        elif self.instr_str == "fmax.d":
-            return rv32d_fmaxd(self.frd, self.frs1, self.frs2)
-        # Default case
-        else:
-            raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
+        match self.instr_str:
+            case "fsgnj.s":
+                return rv32f_fsgnjs(self.frd, self.frs1, self.frs2)
+            case "fsgnjn.s":
+                return rv32f_fsgnjns(self.frd, self.frs1, self.frs2)
+            case "fsgnjx.s":
+                return rv32f_fsgnjxs(self.frd, self.frs1, self.frs2)
+            case "fmin.s":
+                return rv32f_fmins(self.frd, self.frs1, self.frs2)
+            case "fmax.s":
+                return rv32f_fmaxs(self.frd, self.frs1, self.frs2)
+            # rv32d
+            case "fsgnj.d":
+                return rv32d_fsgnjd(self.frd, self.frs1, self.frs2)
+            case "fsgnjn.d":
+                return rv32d_fsgnjnd(self.frd, self.frs1, self.frs2)
+            case "fsgnjx.d":
+                return rv32d_fsgnjxd(self.frd, self.frs1, self.frs2)
+            case "fmin.d":
+                return rv32d_fmind(self.frd, self.frs1, self.frs2)
+            case "fmax.d":
+                return rv32d_fmaxd(self.frd, self.frs1, self.frs2)
+            # Default case
+            case _:
+                raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
 
 # Pure float instructions with frs1, and frd
 Float2Instructions = ("fsqrt.s", "fsqrt.d", "fcvt.d.s", "fcvt.s.d")
@@ -741,20 +756,21 @@ class Float2Instruction(CFInstruction):
 
     def gen_bytecode_int(self, is_spike_resolution: bool):
         # rv32f
-        if self.instr_str == "fsqrt.s":
-            return rv32f_fsqrts(self.frd, self.frs1, self.rm)
-        # rv32d
-        elif self.instr_str == "fsqrt.d":
-            return rv32d_fsqrtd(self.frd, self.frs1, self.rm)
-        # rv32d
-        elif self.instr_str == "fcvt.d.s":
-            return rv32d_fcvtds(self.frd, self.frs1, self.rm)
-        # rv32d
-        elif self.instr_str == "fcvt.s.d":
-            return rv32d_fcvtsd(self.frd, self.frs1, self.rm)
-        # Default case
-        else:
-            raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
+        match self.instr_str:
+            case "fsqrt.s":
+                return rv32f_fsqrts(self.frd, self.frs1, self.rm)
+            # rv32d
+            case "fsqrt.d":
+                return rv32d_fsqrtd(self.frd, self.frs1, self.rm)
+            # rv32d
+            case "fcvt.d.s":
+                return rv32d_fcvtds(self.frd, self.frs1, self.rm)
+            # rv32d
+            case "fcvt.s.d":
+                return rv32d_fcvtsd(self.frd, self.frs1, self.rm)
+            # Default case
+            case _:
+                raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
 
 # Flating point instructions of 2 source floats but an integer destination
 FloatIntRd2Instructions = ("feq.s", "flt.s", "fle.s", "feq.d", "flt.d", "fle.d")
@@ -776,22 +792,23 @@ class FloatIntRd2Instruction(CFInstruction):
 
     def gen_bytecode_int(self, is_spike_resolution: bool):
         # rv32f
-        if self.instr_str == "feq.s":
-            return rv32f_feqs(self.rd, self.frs1, self.frs2)
-        elif self.instr_str == "flt.s":
-            return rv32f_flts(self.rd, self.frs1, self.frs2)
-        elif self.instr_str == "fle.s":
-            return rv32f_fles(self.rd, self.frs1, self.frs2)
-        # rv32d
-        elif self.instr_str == "feq.d":
-            return rv32d_feqd(self.rd, self.frs1, self.frs2)
-        elif self.instr_str == "flt.d":
-            return rv32d_fltd(self.rd, self.frs1, self.frs2)
-        elif self.instr_str == "fle.d":
-            return rv32d_fled(self.rd, self.frs1, self.frs2)
-        # Default case
-        else:
-            raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
+        match self.instr_str:
+            case "feq.s":
+                return rv32f_feqs(self.rd, self.frs1, self.frs2)
+            case "flt.s":
+                return rv32f_flts(self.rd, self.frs1, self.frs2)
+            case "fle.s":
+                return rv32f_fles(self.rd, self.frs1, self.frs2)
+            # rv32d
+            case "feq.d":
+                return rv32d_feqd(self.rd, self.frs1, self.frs2)
+            case "flt.d":
+                return rv32d_fltd(self.rd, self.frs1, self.frs2)
+            case "fle.d":
+                return rv32d_fled(self.rd, self.frs1, self.frs2)
+            # Default case
+            case _:
+                raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
 
 # Flating point instructions of 1 source float but an integer destination
 FloatIntRd1Instructions = ("fmv.x.w", "fclass.s", "fclass.d", "fmv.x.d")
@@ -810,19 +827,20 @@ class FloatIntRd1Instruction(CFInstruction):
 
     def gen_bytecode_int(self, is_spike_resolution: bool):
         # rv32f
-        if self.instr_str == "fmv.x.w":
-            return rv32f_fmvxw(self.rd, self.frs1)
-        elif self.instr_str == "fclass.s":
-            return rv32f_fclasss(self.rd, self.frs1)
-        # rv32d
-        elif self.instr_str == "fclass.d":
-            return rv32d_fclassd(self.rd, self.frs1)
-        # rv64d
-        elif self.instr_str == "fmv.x.d":
-            return rv64d_fmvxd(self.rd, self.frs1)
-        # Default case
-        else:
-            raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
+        match self.instr_str:
+            case "fmv.x.w":
+                return rv32f_fmvxw(self.rd, self.frs1)
+            case "fclass.s":
+                return rv32f_fclasss(self.rd, self.frs1)
+            # rv32d
+            case "fclass.d":
+                return rv32d_fclassd(self.rd, self.frs1)
+            # rv64d
+            case "fmv.x.d":
+                return rv64d_fmvxd(self.rd, self.frs1)
+            # Default case
+            case _:
+                raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
 
 # Flating point instructions of 1 source int but a float destination
 FloatIntRs1Instructions = ("fmv.w.x", "fmv.d.x")
@@ -841,14 +859,15 @@ class FloatIntRs1Instruction(CFInstruction):
 
     def gen_bytecode_int(self, is_spike_resolution: bool):
         # rv32f
-        if self.instr_str == "fmv.w.x":
-            return rv32f_fmvwx(self.frd, self.rs1)
-        # rv64d
-        elif self.instr_str == "fmv.d.x":
-            return rv64d_fmvdx(self.frd, self.rs1)
-        # Default case
-        else:
-            raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
+        match self.instr_str:
+            case "fmv.w.x":
+                return rv32f_fmvwx(self.frd, self.rs1)
+            # rv64d
+            case "fmv.d.x":
+                return rv64d_fmvdx(self.frd, self.rs1)
+            # Default case
+            case _:
+                raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
 
 ###
 # Atomic instructions
@@ -893,15 +912,16 @@ class CSRRegInstruction(CSRInstruction):
 
     def gen_bytecode_int(self, is_spike_resolution: bool):
         # rv32i
-        if self.instr_str == "csrrw":
-            return zicsr_csrrw(self.rd, self.rs1, self.csr_id)
-        elif self.instr_str == "csrrs":
-            return zicsr_csrrs(self.rd, self.rs1, self.csr_id)
-        elif self.instr_str == "csrrc":
-            return zicsr_csrrc(self.rd, self.rs1, self.csr_id)
-        # Default case
-        else:
-            raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
+        match self.instr_str:
+            case "csrrw":
+                return zicsr_csrrw(self.rd, self.rs1, self.csr_id)
+            case "csrrs":
+                return zicsr_csrrs(self.rd, self.rs1, self.csr_id)
+            case "csrrc":
+                return zicsr_csrrc(self.rd, self.rs1, self.csr_id)
+            # Default case
+            case _:
+                raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
 
 # CSR operations with immediate
 CSRImmInstructions = "csrrwi", "csrrsi", "csrrci"
@@ -920,15 +940,16 @@ class CSRImmInstruction(CSRInstruction):
 
     def gen_bytecode_int(self, is_spike_resolution: bool):
         # rv32i
-        if self.instr_str == "csrrwi":
-            return zicsr_csrrwi(self.rd, self.uimm, self.csr_id)
-        elif self.instr_str == "csrrsi":
-            return zicsr_csrrsi(self.rd, self.uimm, self.csr_id)
-        elif self.instr_str == "csrrci":
-            return zicsr_csrrci(self.rd, self.uimm, self.csr_id)
-        # Default case
-        else:
-            raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
+        match self.instr_str:
+            case "csrrwi":
+                return zicsr_csrrwi(self.rd, self.uimm, self.csr_id)
+            case "csrrsi":
+                return zicsr_csrrsi(self.rd, self.uimm, self.csr_id)
+            case "csrrci":
+                return zicsr_csrrci(self.rd, self.uimm, self.csr_id)
+            # Default case
+            case _:
+                raise ValueError(f"Unexpected instruction string: `{self.instr_str}`.")
 
 
 ###
