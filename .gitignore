@@ -4,3 +4,5 @@ __pycache__
 transcript
 tmp
 figures
+env.sh
+design-processing/design_repos.json
